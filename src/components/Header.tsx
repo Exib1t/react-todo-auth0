@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const { authenticated } = useAppSelector((state) => state.user);
+  const { theme } = useAppSelector((state) => state.theme);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
@@ -22,7 +23,7 @@ const Header = () => {
   };
 
   return (
-    <StyledHeader>
+    <StyledHeader theme={theme}>
       <StyledHeaderInner>
         <Link to={"/"} style={{ textDecoration: "none" }}>
           <Text size={30} weight={700} align={"center"}>
@@ -32,14 +33,20 @@ const Header = () => {
         <StyledList>
           {authenticated && (
             <li>
-              <StyledLink href={"app"}>App</StyledLink>
+              <StyledLink theme={theme} href={"app"}>
+                App
+              </StyledLink>
             </li>
           )}
           <li>
-            <StyledLink href={"#about"}>About</StyledLink>
+            <StyledLink theme={theme} href={"#about"}>
+              About
+            </StyledLink>
           </li>
           <li>
-            <StyledLink href={"#contacts"}>Contacts</StyledLink>
+            <StyledLink theme={theme} href={"#contacts"}>
+              Contacts
+            </StyledLink>
           </li>
           {authenticated ? (
             <>

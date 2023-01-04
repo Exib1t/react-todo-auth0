@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { theme } from "../../themes/theme";
+import { ThemeState } from "../../store/reducers/themeSlicer";
 
 export const StyledTask = styled.div`
   width: 100%;
@@ -10,8 +12,12 @@ export const StyledTask = styled.div`
   border-radius: 0;
   border-left: 3px solid #653cb4;
   border-color: ${(props: Props) =>
-    props.completed ? "rgb(31,185,57)" : "#653cb4"};
-  background: #ffffff;
+    props.completed ? theme.palette.divider : theme.palette.primary.main};
+  background: ${(props) =>
+    props.theme === ThemeState.light
+      ? theme.palette.primary.light
+      : theme.palette.secondary.dark};
+  transition: background-color, border-left-color 0.3s;
 
   &:last-child {
     margin: 0;

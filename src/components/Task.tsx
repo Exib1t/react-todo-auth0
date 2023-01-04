@@ -18,6 +18,7 @@ interface Props {
 const Task: FC<Props> = ({ data }) => {
   const dispatch = useAppDispatch();
   const { editable } = useAppSelector((state) => state.todos);
+  const { theme } = useAppSelector((state) => state.theme);
   function deleteHandle() {
     dispatch(deleteTask({ id: data.id }));
   }
@@ -35,7 +36,7 @@ const Task: FC<Props> = ({ data }) => {
   }
 
   return (
-    <StyledTask completed={data.completed}>
+    <StyledTask completed={data.completed} theme={theme}>
       <Text size={20}>{data.text}</Text>
       <div style={{ display: "flex", gap: "10px" }}>
         {editable.data?.id === data.id ? (

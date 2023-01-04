@@ -3,13 +3,16 @@ import Page from "../components/UI/Page";
 import { FormControl, TextField } from "@mui/material";
 import Text from "../components/UI/Text";
 import { StyledCard } from "../components/styled/StyledCard";
+import { useAppSelector } from "../hooks/redux";
 
 interface Props {}
 
 const ProfilePage: FC<Props> = () => {
+  const { theme } = useAppSelector((state) => state.theme);
+
   return (
     <Page>
-      <StyledCard>
+      <StyledCard theme={theme}>
         <Text align={"center"} margin={"0 0 25px"}>
           My Account
         </Text>

@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { useAppSelector } from "../../hooks/redux";
+import { ThemeState } from "../../store/reducers/themeSlicer";
+import { theme as colors } from "../../themes/theme";
 
 const Text = ({
   children,
@@ -11,16 +14,26 @@ const Text = ({
   line = "1",
   ...props
 }: TextType) => {
+  const { theme } = useAppSelector((state) => state.theme);
+
   const StyledText = styled.p`
     width: ${width};
     margin: ${margin};
     padding: 0;
     font: ${weight} ${size}px / ${line} "Ubuntu";
-    color: #4f4f4f;
+    color: ${(props) =>
+      props.theme === ThemeState.light
+        ? colors.palette.text.primary
+        : colors.palette.text.secondary};
     text-align: ${align};
+    transition: color 0.3s;
   `;
 
-  return <StyledText {...props}>{children}</StyledText>;
+  return (
+    <StyledText theme={theme} {...props}>
+      {children}
+    </StyledText>
+  );
 };
 
 export default Text;

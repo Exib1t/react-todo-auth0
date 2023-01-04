@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { theme } from "../../themes/theme";
+import { ThemeState } from "../../store/reducers/themeSlicer";
 
 export const StyledForm = styled.form`
   width: 100%;
@@ -19,7 +21,11 @@ export const StyledInput = styled.input`
   border: none;
   border-bottom: 2px solid #653cb4;
   font: 500 18px/1 "Ubuntu";
-  color: #4f4f4f;
+  color: ${(props) =>
+    props.theme === ThemeState.light
+      ? theme.palette.text.primary
+      : theme.palette.text.secondary};
+  transition: color 0.3s;
 
   &:focus {
     background: linear-gradient(0deg, rgba(101, 60, 180, 0.2), transparent);

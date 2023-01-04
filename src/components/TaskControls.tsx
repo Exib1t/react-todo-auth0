@@ -15,6 +15,7 @@ const TaskControls = () => {
     userId: 1,
   };
   const { editable } = useAppSelector((state) => state.todos);
+  const { theme } = useAppSelector((state) => state.theme);
   const [task, setTask] = useState<TaskType>(initialTaskState);
   const [editTaskText, setEditTaskText] = useState<string>("");
 
@@ -44,12 +45,14 @@ const TaskControls = () => {
       <StyledLabel>
         {editable.state ? (
           <StyledInput
+            theme={theme}
             placeholder={"Task text"}
             value={editTaskText}
             onChange={(e) => setEditTaskText(e.target.value)}
           />
         ) : (
           <StyledInput
+            theme={theme}
             placeholder={"Task text"}
             value={task.text}
             onChange={(e) => {

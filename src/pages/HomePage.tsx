@@ -6,6 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { getToken } from "../store/reducers/userSlicer";
 import { CircularProgress } from "@mui/material";
+import { themeSlicer } from "../store/reducers/themeSlicer";
 
 const HomePage = () => {
   const auth = useAuth0();
@@ -13,6 +14,10 @@ const HomePage = () => {
 
   function token() {
     dispatch(getToken({ auth }));
+  }
+
+  function toggleTheme() {
+    dispatch(themeSlicer.actions.toggleTheme());
   }
 
   return (
@@ -24,6 +29,7 @@ const HomePage = () => {
         complete. It may also be designed to work on multiple devices.
       </Text>
       <Button onClick={token}>Token</Button>
+      <Button onClick={toggleTheme}>Toggle Theme</Button>
     </Page>
   );
 };

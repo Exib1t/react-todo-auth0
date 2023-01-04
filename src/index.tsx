@@ -9,6 +9,8 @@ import { AUTH_CLIENT_ID, AUTH_DOMAIN } from "./consts/consts";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { setupStore } from "./store/store";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./themes/theme";
 
 const store = setupStore();
 
@@ -18,22 +20,24 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Provider store={store}>
-        <Auth0Provider
-          domain={AUTH_DOMAIN}
-          clientId={AUTH_CLIENT_ID}
-          redirectUri={window.location.origin}
-        >
-          <App />
-          <ToastContainer
-            theme={"dark"}
-            pauseOnFocusLoss={false}
-            pauseOnHover={false}
-            position={"bottom-right"}
-            autoClose={1500}
-          />
-        </Auth0Provider>
-      </Provider>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <Auth0Provider
+            domain={AUTH_DOMAIN}
+            clientId={AUTH_CLIENT_ID}
+            redirectUri={window.location.origin}
+          >
+            <App />
+            <ToastContainer
+              theme={"dark"}
+              pauseOnFocusLoss={false}
+              pauseOnHover={false}
+              position={"bottom-right"}
+              autoClose={1500}
+            />
+          </Auth0Provider>
+        </Provider>
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

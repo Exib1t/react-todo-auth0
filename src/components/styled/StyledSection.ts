@@ -1,10 +1,17 @@
 import styled from "@emotion/styled";
+import { ThemeState } from "../../store/reducers/themeSlicer";
+import { theme } from "../../themes/theme";
 
 export const StyledSection = styled.div`
   width: 100%;
   margin: 0;
   padding: 0;
-  background: #eaeaea;
+  background: ${(props) => props.color};
+  background: ${(props) =>
+    props.theme === ThemeState.light
+      ? theme.palette.primary.dark
+      : theme.palette.secondary.light};
+  transition: background-color 0.3s;
 `;
 
 export const StyledSectionInner = styled.div`
@@ -28,7 +35,16 @@ export const StyledHeader = styled.header`
   padding: 0;
   z-index: 5;
   background: #ffffff;
+  background: ${(props) =>
+    props.theme === ThemeState.light
+      ? theme.palette.primary.light
+      : theme.palette.secondary.dark};
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-color: ${(props) =>
+    props.theme === ThemeState.light
+      ? "rgba(0, 0, 0, 0.2)"
+      : "rgba(255, 255, 255, 0.2)"};
+  transition: background-color, border-bottom-color 0.3s;
 `;
 
 export const StyledHeaderInner = styled.div`

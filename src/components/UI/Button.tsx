@@ -7,6 +7,7 @@ const Button = ({
   align = "flex-start",
   size = "small",
   padding = "12px 35px",
+  margin = "0",
   background = ["#653cb4", "#805cc7"],
   radius = 5,
   ...props
@@ -18,7 +19,7 @@ const Button = ({
     : null;
 
   const StyledButton = styled.button`
-    margin: 0;
+    margin: ${margin};
     padding: ${padding};
     box-sizing: border-box;
     font: 500 ${fontSize}px / 1 "Ubuntu";
@@ -48,6 +49,7 @@ interface ButtonType {
   align?: string;
   size?: string;
   padding?: string;
+  margin?: string;
   radius?: number;
   background?: string | string[];
   props?: any;
